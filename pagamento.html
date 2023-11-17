@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela de Pagamento</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .payment-container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        .payment-header {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="number"], input[type="date"] {
+            width: 90%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .payment-button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .payment-options {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .payment-option {
+            display: flex;
+            align-items: center;
+        }
+        button{
+            width: 30%;
+        }
+
+  
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <div class="payment-header">
+            Tela de Pagamento
+        </div>
+        <div class="payment-options">
+            <div class="payment-option">
+                <input type="radio" name="payment-method" id="credit-card" value="credit-card">
+                <label for="credit-card">Cartão de Crédito</label>
+            </div>
+            <div class="payment-option">
+                <input type="radio" name="payment-method" id="debit-card" value="debit-card">
+                <label for="debit-card">Cartão de Débito</label>
+            </div>
+            <div class="payment-option">
+                <input type="radio" name="payment-method" id="boleto" value="boleto">
+                <label for="boleto">Boleto</label>
+            </div>
+        </div>
+          
+        <form>
+            <div class="form-group card-info">
+                <label for="card-number">Número do Cartão</label>
+                <input type="text" id="card-number" placeholder="1234 5678 9012 3456">
+            </div>
+            <div class="form-group card-info">
+                <label for="expiration-date">Data de Validade</label>
+                <input type="date" id="expiration-date">
+            </div>
+            <div class="form-group card-info">
+                <label for="cvv">CVV</label>
+                <input type="number" id="cvv" placeholder="123">
+            </div>
+            <div class="form-group boleto-info" style="display: none;">
+                <label for="boleto-name">Nome do Beneficiário</label>
+                <input type="text" id="boleto-name" placeholder="Nome Completo">
+            </div>
+            <div class="form-group">
+                <label for="address">Endereço</label>
+                <input type="text" id="address" placeholder="Endereço Completo">
+            </div>
+            <div class="form-group">
+                <label for="cep">CEP</label>
+                <input type="text" id="cep" placeholder="12345-678">
+            </div>
+            <div class="form-group">
+                <label for="phone">Telefone</label>
+                <input type="tel" id="phone" placeholder="(12) 3456-7890">
+            </div>
+          
+        
+        </form>
+    </div>
+ 
+    <script>
+        const paymentOptions = document.querySelectorAll('input[name="payment-method"]');
+        const cardInfo = document.querySelectorAll('.card-info');
+        const boletoInfo = document.querySelector('.boleto-info');
+ 
+        paymentOptions.forEach(option => {
+            option.addEventListener('change', () => {
+                if (option.value === 'boleto') {
+                    cardInfo.forEach(info => info.style.display = 'none');
+                    boletoInfo.style.display = 'block';
+                } else {
+                    cardInfo.forEach(info => info.style.display = 'block');
+                    boletoInfo.style.display = 'none';
+                }
+            });
+        });
+    </script>
+    
+ <a href="confirm.html"><center><button class="payment-button" type="submit">Pagar</button></center></a>     
+        
+    
+</body>
+</html>
+
+ 
